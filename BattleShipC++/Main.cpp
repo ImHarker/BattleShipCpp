@@ -12,7 +12,7 @@ int main() {
 			} else if (j == 0) {
 				std::cout << "[" << (char)(64 + i) << "]";
 			}else {
-			std::cout << "[ ]";
+			std::cout << "[ ]"; 
 		}
 	}
 		std::cout << std::endl;
