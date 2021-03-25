@@ -1,15 +1,16 @@
 #pragma once
 #include <iostream>
 
-class PontoNaval {
+class NavalCoordinate {
 	private:
 		char x;
 		int y;
 
 	public: 
-		PontoNaval();
-		PontoNaval(char xx, int yy);
-		PontoNaval(int xx, int yy);
+		NavalCoordinate();
+		NavalCoordinate(char xx, int yy);
+		NavalCoordinate(int xx, int yy);
+		~NavalCoordinate();
 
 		char getX() const;
 		int getIntX() const;
@@ -24,9 +25,8 @@ class PontoNaval {
 		void ask2Set();
 		void show();
 
-		bool operator == (const PontoNaval p) const;
-		bool operator != (const PontoNaval p) const;
+		bool operator == (const NavalCoordinate p) const;
+		bool operator != (const NavalCoordinate p) const;
 
-		~PontoNaval();
 };
 

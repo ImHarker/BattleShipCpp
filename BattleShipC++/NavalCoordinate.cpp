@@ -1,37 +1,37 @@
-#include "PontoNaval.h"
+#include "NavalCoordinate.h"
 
-PontoNaval::PontoNaval() {
+NavalCoordinate::NavalCoordinate() {
 	x = 'A';
 	y = 1;
 }
 
-PontoNaval::PontoNaval(char xx, int yy) {
+NavalCoordinate::NavalCoordinate(char xx, int yy) {
 	x = xx;
 	y = yy;
 }
 
-PontoNaval::PontoNaval(int xx, int yy) {
+NavalCoordinate::NavalCoordinate(int xx, int yy) {
 	x = (char)(xx + 64);
 	y = yy;
 }
 
-PontoNaval::~PontoNaval(){
+NavalCoordinate::~NavalCoordinate(){
 }
 
-char PontoNaval::getX() const {
+char NavalCoordinate::getX() const {
 	return x;
 }
 
-int PontoNaval::getIntX() const {
+int NavalCoordinate::getIntX() const {
 	return ((int)x - 64);
 }
 
-int PontoNaval::getY() const {
+int NavalCoordinate::getY() const {
 	return y;
 }
 
 
-bool PontoNaval::setY(int yy) {
+bool NavalCoordinate::setY(int yy) {
 	if (yy < 1 || yy > 10 ) {
 		std::cout << "Invalid Y coordinate: " << yy << std::endl;
 		return false;
@@ -40,7 +40,7 @@ bool PontoNaval::setY(int yy) {
 	return true;
 }
 
-bool PontoNaval::setX(char xx) {
+bool NavalCoordinate::setX(char xx) {
 	if (xx < 'A' || xx > 'J') {
 		std::cout << "Invalid X coordinate: " << xx << std::endl;
 		return false;
@@ -49,7 +49,7 @@ bool PontoNaval::setX(char xx) {
 	return true;
 }
 
-bool PontoNaval::setX(int xx) {
+bool NavalCoordinate::setX(int xx) {
 	if (xx < 1 || xx > 10) {
 		std::cout << "Invalid X coordinate: " << (char)(xx+64) << std::endl;
 		return false;
@@ -58,7 +58,7 @@ bool PontoNaval::setX(int xx) {
 	return true;
 }
 
-void PontoNaval::ask2Set() {
+void NavalCoordinate::ask2Set() {
 	char xx;
 	int yy;
 
@@ -81,18 +81,18 @@ void PontoNaval::ask2Set() {
 	} while (!setY(yy));
 }
 
-void PontoNaval::show() {
+void NavalCoordinate::show() {
 	std::cout << '(' << x << ',' << y << ')' << std::endl;
 }
 
-bool PontoNaval::operator == (const PontoNaval p) const {
+bool NavalCoordinate::operator == (const NavalCoordinate p) const {
 	if (getX() == p.getX() && getY() == p.getY())
 		return true;
 
 	return false;
 }
 
-bool PontoNaval::operator != (const PontoNaval p) const {
+bool NavalCoordinate::operator != (const NavalCoordinate p) const {
 	if (*this == p)
 		return false;
 
