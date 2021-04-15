@@ -5,11 +5,12 @@ class NavalCoordinate {
 	private:
 		char x;
 		int y;
+		char c;
 
 	public: 
 		NavalCoordinate();
-		NavalCoordinate(char xx, int yy);
-		NavalCoordinate(int xx, int yy);
+		NavalCoordinate(char xx, int yy, char cc);
+		NavalCoordinate(int xx, int yy, char cc);
 		~NavalCoordinate();
 
 		char getX() const;
@@ -20,6 +21,8 @@ class NavalCoordinate {
 		int getY() const;
 		bool setY(int yy);
 
+		char getC() const;
+		bool setC(char cc);
 
 
 		void ask2Set();

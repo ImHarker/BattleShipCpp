@@ -3,16 +3,19 @@
 NavalCoordinate::NavalCoordinate() {
 	x = 'A';
 	y = 1;
+	c = '.';
 }
 
-NavalCoordinate::NavalCoordinate(char xx, int yy) {
+NavalCoordinate::NavalCoordinate(char xx, int yy, char cc) {
 	x = xx;
 	y = yy;
+	c = cc;
 }
 
-NavalCoordinate::NavalCoordinate(int xx, int yy) {
+NavalCoordinate::NavalCoordinate(int xx, int yy, char cc) {
 	x = (char)(xx + 64);
 	y = yy;
+	c = cc;
 }
 
 NavalCoordinate::~NavalCoordinate(){
@@ -40,6 +43,20 @@ bool NavalCoordinate::setY(int yy) {
 	return true;
 }
 
+char NavalCoordinate::getC() const{
+	return c;
+}
+
+bool NavalCoordinate::setC(char cc) {
+	cc = toupper(cc);
+	if (cc != '.' && cc != 'O' && cc != 'T' && cc != 'A') {
+		std::cout << "Invalid Char: " << cc << std::endl;
+		return false;
+		}
+	c = cc;
+	return true;
+	}
+
 bool NavalCoordinate::setX(char xx) {
 	if (xx < 'A' || xx > 'J') {
 		std::cout << "Invalid X coordinate: " << xx << std::endl;
@@ -61,6 +78,7 @@ bool NavalCoordinate::setX(int xx) {
 void NavalCoordinate::ask2Set() {
 	char xx;
 	int yy;
+	char cc;
 
 	do {
 		std::cout << "Insert a value to X: ";
@@ -79,14 +97,22 @@ void NavalCoordinate::ask2Set() {
 			std::cout << "Insert a value to Y: ";
 		}
 	} while (!setY(yy));
+
+	do {
+		std::cout << "Insert a Char: ";
+		std::cin >> cc;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		xx = std::toupper(cc);
+	} while (!setY(cc));
 }
 
 void NavalCoordinate::show() {
-	std::cout << '(' << x << ',' << y << ')' << std::endl;
+	std::cout << '(' << x << ',' << y << ',' << c << ')' << std::endl;
 }
 
 bool NavalCoordinate::operator == (const NavalCoordinate p) const {
-	if (getX() == p.getX() && getY() == p.getY())
+	if (getX() == p.getX() && getY() == p.getY() && getC() == p.getC())
 		return true;
 
 	return false;

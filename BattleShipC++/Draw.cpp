@@ -3,20 +3,22 @@
 #include <iostream>
 
 Draw::Draw(Board &player, Board &playerEnemy, Board &AI, Board &AIPlayer) {
-	boardsPlayer[0] = player;
-	boardsPlayer[1] = playerEnemy;
-	boardsAI[0] = AI;
-	boardsAI[1] = AIPlayer;
+	boardsPlayer[0] = &player;
+	boardsPlayer[1] = &playerEnemy;
+	boardsAI[0] = &AI;
+	boardsAI[1] = &AIPlayer;
 }
 
 void Draw::DrawPlayer() {
-	DrawBoard(8, 4, boardsPlayer[0]);
-	std::cout << std::endl;
-	DrawBoard(8, 4, boardsPlayer[1]);
+	DrawBoards(*boardsPlayer[0], *boardsPlayer[1], 8, 4);
+}
+void Draw::DrawAI() {
+	DrawBoards(*boardsAI[0], *boardsAI[1], 8, 4);
 }
 
+#pragma region Board Construction
 void Draw::DrawDataLineBoard(int x0, int line, Board board) {
-	int i, j;
+	int i;
 
 	for (i = 0; i < x0; i++) {
 		std::cout << " ";
@@ -24,7 +26,7 @@ void Draw::DrawDataLineBoard(int x0, int line, Board board) {
 
 	for (i = 0; i < board.getWidth(); i++) {
 		std::cout << (char)179;
-		std::cout << " " << board.getMatrixCell(line + 1, i + 1) << " ";
+		std::cout << " " << board.getMatrixCell(line + 1, i + 1).getC() << " ";
 	}
 	std::cout << (char)179;
 }
@@ -80,6 +82,18 @@ void Draw::DrawLastLineBoard(int x0, Board board) {
 	std::cout << (char)217;
 }
 
+void Draw::DrawCoordLetter(int x0, Board board) {
+	int i;
+	for (i = 0; i < x0; i++) {
+		std::cout << " ";
+	}
+
+	for (i = 0; i < board.getWidth(); i++) {
+		std::cout << "  " << (char)(65 + i) << " ";
+	}
+}
+#pragma endregion
+
 void Draw::DrawBoard(int x0, int y0, Board board) {
 	int i, j;
 	x0 += 3;
@@ -109,14 +123,43 @@ void Draw::DrawBoard(int x0, int y0, Board board) {
 	std::cout << std::endl;
 }
 
-
-void Draw::DrawCoordLetter(int x0, Board board) {
-	int i;
-	for (i = 0; i < x0; i++) {
-		std::cout << " ";
+void Draw::DrawBoards(Board board, Board board2, int x0, int y0) {
+	int i, j;
+	for (i = 0; i < y0; i++)
+		std::cout << std::endl;
+	DrawCoordLetter(x0, board);
+	DrawCoordLetter(x0 + 1, board2);
+	std::cout << std::endl;
+	DrawFirstLineBoard(x0, board);
+	DrawFirstLineBoard(x0, board2);
+	for (i = 0; i < board.getHeight(); i++) {
+		std::cout << std::endl;
+		if (i + 1 >= 10) {
+			for (j = 0; j < x0 - 3; j++)
+				std::cout << " ";
+		} else {
+			for (j = 0; j < x0 - 2; j++)
+				std::cout << " ";
+		}
+		std::cout << i + 1 << " ";
+		DrawDataLineBoard(0, i, board);
+		if (i + 1 >= 10) {
+			for (j = 0; j < x0 - 3; j++)
+				std::cout << " ";
+		} else {
+			for (j = 0; j < x0 - 2; j++)
+				std::cout << " ";
+		}
+		std::cout << i + 1 << " ";
+		DrawDataLineBoard(0, i, board2);
+		if (i < board.getHeight() - 1) {
+			std::cout << std::endl;
+			DrawMiddleLineBoard(x0, board);
+			DrawMiddleLineBoard(x0, board2);
+		}
 	}
-
-	for (i = 0; i < board.getWidth(); i++) {
-		std::cout << "  " << (char)(65 + i) << " ";
-	}
+	std::cout << std::endl;
+	DrawLastLineBoard(x0, board);
+	DrawLastLineBoard(x0, board2);
+	std::cout << std::endl;
 }

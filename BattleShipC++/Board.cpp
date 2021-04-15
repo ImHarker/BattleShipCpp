@@ -41,10 +41,16 @@ int Board::getHeight() {
 }
 
 void Board::setMatrixCell(int row, int col, char c) {
-	matrix[row-1][col-1] = c;
+	matrix[row - 1][col - 1].setY(row);
+	matrix[row - 1][col - 1].setX(col);
+	matrix[row - 1][col - 1].setC(c);
 }
 
-char Board::getMatrixCell(int row, int col) {
+void Board::setMatrixCell(NavalCoordinate nc) {
+	matrix[nc.getIntX() - 1][nc.getY() - 1] = nc;
+}
+
+NavalCoordinate Board::getMatrixCell(int row, int col) {
 	return matrix[row-1][col-1];
 }
 
