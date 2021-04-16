@@ -1,5 +1,5 @@
 #include "AI.h"
 #include <iostream>
 AI::AI() {
-	std::cout << "teste";
+	std::cout << "AI instance working \n";
 }

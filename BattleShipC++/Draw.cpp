@@ -1,5 +1,6 @@
 #include "Draw.h"
-
+#include "Game.h"
+#include <conio.h>
 #include <iostream>
 
 Draw::Draw(Board &player, Board &playerEnemy, Board &AI, Board &AIPlayer) {
@@ -14,6 +15,89 @@ void Draw::DrawPlayer() {
 }
 void Draw::DrawAI() {
 	DrawBoards(*boardsAI[0], *boardsAI[1], 8, 4);
+}
+
+void Draw::Menu() {
+	Game game;
+
+	bool inmenu = true;
+	int menu = 0;
+	int _menu = 1;
+
+	std::cout << "-> Jogar" << std::endl;
+	std::cout << "   Salvar" << std::endl;
+	std::cout << "   Regras" << std::endl;
+	std::cout << "   Creditos" << std::endl;
+
+	while (inmenu) {
+		switch (_getch()) {
+		case 72:
+			menu++;//key up
+			break;
+		case 80:
+			menu--;  // key down
+			break;
+		case 13:
+			switch (abs(menu % 4)) {
+			case 0:
+				system("cls");
+				inmenu = false;
+				game.GameLoop();
+				break;
+			case 1:
+				system("cls");
+				std::cout << "SALVAR!";
+				inmenu = false;
+				break;
+			case 2:
+				system("cls");
+				std::cout << "REGRAS!";
+				inmenu = false;
+				break;
+			case 3:
+				system("cls");
+				std::cout << "CREDITOS!";
+				inmenu = false;
+				break;
+			}
+			break;
+		}
+		if (menu != _menu && inmenu) {
+			switch (abs(menu % 4)) {
+			case 0:
+				system("cls");
+				std::cout << "-> Jogar" << std::endl;
+				std::cout << "   Salvar" << std::endl;
+				std::cout << "   Regras" << std::endl;
+				std::cout << "   Creditos" << std::endl;
+				break;
+			case 1:
+				system("cls");
+				std::cout << "   Jogar" << std::endl;
+				std::cout << "-> Salvar" << std::endl;
+				std::cout << "   Regras" << std::endl;
+				std::cout << "   Creditos" << std::endl;
+				break;
+			case 2:
+				system("cls");
+				std::cout << "   Jogar" << std::endl;
+				std::cout << "   Salvar" << std::endl;
+				std::cout << "-> Regras" << std::endl;
+				std::cout << "   Creditos" << std::endl;
+				break;
+			case 3:
+				system("cls");
+				std::cout << "   Jogar" << std::endl;
+				std::cout << "   Salvar" << std::endl;
+				std::cout << "   Regras" << std::endl;
+				std::cout << "-> Creditos" << std::endl;
+				break;
+
+			}
+			_menu = menu;
+		}
+	}
+
 }
 
 #pragma region Board Construction

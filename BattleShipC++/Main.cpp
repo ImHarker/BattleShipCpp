@@ -1,9 +1,6 @@
-#include "Game.h"
-
+#include "Draw.h"
 int main() {
-	Game game;
-
-	game.GameLoop();
+	Draw::Menu();
 
 	return 0;
 }

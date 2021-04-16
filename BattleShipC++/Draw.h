@@ -18,4 +18,6 @@ public:
 	Draw(Board &player, Board &playerEnemy, Board &AI, Board &AIPlayer);
 	void DrawPlayer();
 	void DrawAI();
+
+	static void Menu();
 };
