@@ -3,5 +3,6 @@
 class AI : public Player {
 public:
 	AI();
+	void putShip();
 };
 

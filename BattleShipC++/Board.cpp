@@ -40,17 +40,30 @@ int Board::getHeight() {
 	return height;
 }
 
-void Board::setMatrixCell(int row, int col, char c) {
-	matrix[row - 1][col - 1].setY(row);
-	matrix[row - 1][col - 1].setX(col);
-	matrix[row - 1][col - 1].setC(c);
+void Board::setMatrixCell(int x, int y, char c) {
+	matrix[y - 1][x - 1].setY(y);
+	matrix[y - 1][x - 1].setX(x);
+	matrix[y - 1][x - 1].setC(c);
 }
 
 void Board::setMatrixCell(NavalCoordinate nc) {
-	matrix[nc.getIntX() - 1][nc.getY() - 1] = nc;
+	matrix[nc.getY() - 1][nc.getIntX() - 1] = nc;
 }
 
 NavalCoordinate Board::getMatrixCell(int row, int col) {
 	return matrix[row-1][col-1];
+}
+
+void Board::reset() {
+	int i, j;
+	NavalCoordinate nc;
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 10; j++) {
+			nc.setX(j+1);
+			nc.setY(i+1);
+			nc.setC('.');
+			matrix[i][j] = nc;
+		}
+	}
 }
 

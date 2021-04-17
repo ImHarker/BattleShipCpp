@@ -7,6 +7,7 @@ Ship::Ship(){
 	sunken = false;
 }
 
+
 Ship::Ship(int width, int height) {
 	w = width;
 	h = height;
@@ -15,6 +16,10 @@ Ship::Ship(int width, int height) {
 }
 
 Ship::~Ship(){
+}
+
+NavalCoordinate& Ship::getLocation() {
+	return location;
 }
 
 void Ship::setSize(int width, int height) {

@@ -147,6 +147,7 @@
     <ClCompile Include="NavalCoordinate.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="Submarine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="NavalCoordinate.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="Submarine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

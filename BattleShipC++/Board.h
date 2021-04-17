@@ -21,5 +21,6 @@ public:
 	void setMatrixCell(NavalCoordinate nc);
 	NavalCoordinate getMatrixCell(int row, int col);
 
+	void reset();
 };
 

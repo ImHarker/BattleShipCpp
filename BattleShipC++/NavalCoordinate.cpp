@@ -98,13 +98,6 @@ void NavalCoordinate::ask2Set() {
 		}
 	} while (!setY(yy));
 
-	do {
-		std::cout << "Insert a Char: ";
-		std::cin >> cc;
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		xx = std::toupper(cc);
-	} while (!setY(cc));
 }
 
 void NavalCoordinate::show() {

@@ -23,7 +23,7 @@ void Draw::Menu() {
 	bool inmenu = true;
 	int menu = 0;
 	int _menu = 1;
-
+	std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
 	std::cout << "-> Jogar" << std::endl;
 	std::cout << "   Salvar" << std::endl;
 	std::cout << "   Regras" << std::endl;
@@ -66,6 +66,7 @@ void Draw::Menu() {
 			switch (abs(menu % 4)) {
 			case 0:
 				system("cls");
+				std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
 				std::cout << "-> Jogar" << std::endl;
 				std::cout << "   Salvar" << std::endl;
 				std::cout << "   Regras" << std::endl;
@@ -73,6 +74,7 @@ void Draw::Menu() {
 				break;
 			case 1:
 				system("cls");
+				std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
 				std::cout << "   Jogar" << std::endl;
 				std::cout << "-> Salvar" << std::endl;
 				std::cout << "   Regras" << std::endl;
@@ -80,6 +82,7 @@ void Draw::Menu() {
 				break;
 			case 2:
 				system("cls");
+				std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
 				std::cout << "   Jogar" << std::endl;
 				std::cout << "   Salvar" << std::endl;
 				std::cout << "-> Regras" << std::endl;
@@ -87,6 +90,7 @@ void Draw::Menu() {
 				break;
 			case 3:
 				system("cls");
+				std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
 				std::cout << "   Jogar" << std::endl;
 				std::cout << "   Salvar" << std::endl;
 				std::cout << "   Regras" << std::endl;
