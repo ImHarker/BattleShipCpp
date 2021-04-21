@@ -35,6 +35,7 @@ public:
 	Board& getBoardView();
 	int getNShips();
 	Ship getShip(int n);
+	bool isAdjacent(int x, int y);
 
 };
 

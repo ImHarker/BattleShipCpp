@@ -85,7 +85,7 @@ void NavalCoordinate::ask2Set() {
 		std::cin >> xx;
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		xx = std::toupper(xx);
+		xx = toupper(xx);
 	} while (!setX(xx));
 
 	do {

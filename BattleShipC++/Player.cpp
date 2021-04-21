@@ -15,8 +15,11 @@ Player::~Player() {
 void Player::putShip() {
     Submarine sub;
     cout << endl << endl;
-    sub.getLocation().ask2Set();
-    sub.getLocation().setC('O');
+	do {
+		sub.getLocation().ask2Set();
+		if (isAdjacent(sub.getLocation().getIntX(), sub.getLocation().getY())) cout << "Invalid position: Adjacent Ships!" << endl;
+	} while (isAdjacent(sub.getLocation().getIntX(), sub.getLocation().getY()));
+	sub.getLocation().setC('O');
     getBoard().setMatrixCell(sub.getLocation());
     ships[nShips] = sub;
     nShips++;
@@ -76,4 +79,56 @@ int Player::getNShips() {
 
 Ship Player::getShip(int n) {
     return ships[n];
+}
+
+bool Player::isAdjacent(int x, int y) {
+    bool adj = false;
+	int i;
+	if (x == 1) {
+		for (i = 0; i < getNShips(); i++) {
+			if ((getShip(i).getLocation().getIntX() == x && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getIntX() == x + 1 && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1 || getShip(i).getLocation().getY() == y)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+				adj = true;
+				break;
+			} else {
+				adj = false;
+			}
+		}
+	} else if (y == 1) {
+		for (i = 0; i < getNShips(); i++) {
+			if ((getShip(i).getLocation().getY() == y && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1)) || (getShip(i).getLocation().getY() == y + 1 && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1 || getShip(i).getLocation().getIntX() == x)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+				adj = true;
+				break;
+			} else {
+				adj = false;
+			}
+		}
+	} else if (x == 10) {
+		for (i = 0; i < getNShips(); i++) {
+			if ((getShip(i).getLocation().getIntX() == x && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getIntX() == x - 1 && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1 || getShip(i).getLocation().getY() == y)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+				adj = true;
+				break;
+			} else {
+				adj = false;
+			}
+		}
+	} else if (y == 10) {
+		for (i = 0; i < getNShips(); i++) {
+			if ((getShip(i).getLocation().getY() == y && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1)) || (getShip(i).getLocation().getY() == y - 1 && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1 || getShip(i).getLocation().getIntX() == x)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+				adj = true;
+				break;
+			} else {
+				adj = false;
+			}
+		}
+	} else {
+		for (i = 0; i < getNShips(); i++) {
+			if ((getShip(i).getLocation().getIntX() == x && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getY() == y && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1)) || (getShip(i).getLocation().getIntX() == x + 1 && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getIntX() == x - 1 && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+				adj = true;
+				break;
+			} else {
+				adj = false;
+			}
+		}
+	}
+	return adj;
 }

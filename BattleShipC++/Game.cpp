@@ -32,14 +32,17 @@ void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {
 		drawManager.DrawBoard(8, 4, AI.getBoard());
 	}
 
-	while (p.getNShips() < 11){
+	system("pause"); //debug
+
+	while (p.getNShips() < 11) {
 		system("cls");
 		drawManager.DrawBoard(8, 4, p.getBoard());
 		p.putShip();
 		system("cls");
 		drawManager.DrawBoard(8, 4, p.getBoard());
 	}
-	system("pause"); //debug
+
+	
 	gameState = "game";
 }
 
