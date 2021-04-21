@@ -11,11 +11,11 @@ void Game::GameLoop() {
 	while (!gameover) {
 		if (gameState == "init") {
 
-			while (1) { //debug
-				AI.getBoard().reset(); //debug
-				AI.setNShips(0); //debug
+			//while (1) { //debug
+			//	AI.getBoard().reset(); //debug
+			//	AI.setNShips(0); //debug
 				InitGame(p, AI, drawManager);
-			} //debug
+			//} //debug
 
 			}
 		system("cls");

@@ -19,15 +19,51 @@ void Draw::DrawAI() {
 
 void Draw::Menu() {
 	Game game;
+	string battle = R"(  ___     _     _____   _____   _      ___        ___   _  _   ___   ___         ___     _     __  __   ___ 
+ | _ )   /_\   |_   _| |_   _| | |    | __|      / __| | || | |_ _| | _ \       / __|   /_\   |  \/  | | __|
+ | _ \  / _ \    | |     | |   | |__  | _|       \__ \ | __ |  | |  |  _/      | (_\   / _ \  | |\/| | | _| 
+ |___/ /_/ \_\   |_|     |_|   |____| |___|      |___/ |_||_| |___| |_|         \___| /_/ \_\ |_|  |_| |___|)";
+	string newgame = R"(	  _  _   ___  __      __        ___     _     __  __   ___ 
+	 | \| | | __| \ \    / /       / __|   /_\   |  \/  | | __|
+	 | .` | | _|   \ \/\/ /       | (_\   / _ \  | |\/| | | _| 
+	 |_|\_| |___|   \_/\_/         \___| /_/ \_\ |_|  |_| |___|)";
+	string newgame_s = R"(    __    _  _   ___  __      __        ___     _     __  __   ___ 
+  __\ \  | \| | | __| \ \    / /       / __|   /_\   |  \/  | | __|
+ |___> > | .` | | _|   \ \/\/ /       | (_\   / _ \  | |\/| | | _| 
+    /_/  |_|\_| |___|   \_/\_/         \___| /_/ \_\ |_|  |_| |___|)";
+	string load = R"(	  _       ___      _     ___          ___     _     __  __   ___ 
+	 | |     / _ \    /_\   |   \        / __|   /_\   |  \/  | | __|
+	 | |__  | (_) |  / _ \  | |) |      | (_\   / _ \  | |\/| | | _| 
+	 |____|  \___/  /_/ \_\ |___/        \___| /_/ \_\ |_|  |_| |___|)";
+	string load_s = R"(    __    _       ___      _     ___          ___     _     __  __   ___ 
+  __\ \  | |     / _ \    /_\   |   \        / __|   /_\   |  \/  | | __|
+ |___> > | |__  | (_) |  / _ \  | |) |      | (_\   / _ \  | |\/| | | _| 
+    /_/  |____|  \___/  /_/ \_\ |___/        \___| /_/ \_\ |_|  |_| |___|)";
+	string rules = R"(	  ___   _   _   _      ___   ___ 
+	 | _ \ | | | | | |    | __| / __|
+	 |   / | |_| | | |__  | _|  \__ \
+	 |_|_\  \___/  |____| |___| |___/)";
+	string rules_s = R"(    __    ___   _   _   _      ___   ___ 
+  __\ \  | _ \ | | | | | |    | __| / __|
+ |___> > |   / | |_| | | |__  | _|  \__ \
+    /_/  |_|_\  \___/  |____| |___| |___/)";
+	string credits = R"(	   ___   ___   ___   ___    ___   _____   ___ 
+	  / __| | _ \ | __| |   \  |_ _| |_   _| / __|
+	 | (__  |   / | _|  | |) |  | |    | |   \__ \
+	  \___| |_|_\ |___| |___/  |___|   |_|   |___/)";
+	string credits_s = R"(    __     ___   ___   ___   ___    ___   _____   ___ 
+  __\ \   / __| | _ \ | __| |   \  |_ _| |_   _| / __|
+ |___> > | (__  |   / | _|  | |) |  | |    | |   \__ \
+    /_/   \___| |_|_\ |___| |___/  |___|   |_|   |___/)";
 
 	bool inmenu = true;
 	int menu = 0;
 	int _menu = 1;
-	std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
-	std::cout << "-> Jogar" << std::endl;
-	std::cout << "   Salvar" << std::endl;
-	std::cout << "   Regras" << std::endl;
-	std::cout << "   Creditos" << std::endl;
+	std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+	std::cout << newgame_s << std::endl;
+	std::cout << load << std::endl;
+	std::cout << rules << std::endl;
+	std::cout << credits << std::endl;
 
 	while (inmenu) {
 		switch (_getch()) {
@@ -66,35 +102,35 @@ void Draw::Menu() {
 			switch (abs(menu % 4)) {
 			case 0:
 				system("cls");
-				std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
-				std::cout << "-> Jogar" << std::endl;
-				std::cout << "   Salvar" << std::endl;
-				std::cout << "   Regras" << std::endl;
-				std::cout << "   Creditos" << std::endl;
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << newgame_s << std::endl;
+				std::cout << load << std::endl;
+				std::cout << rules << std::endl;
+				std::cout << credits << std::endl;
 				break;
 			case 1:
 				system("cls");
-				std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
-				std::cout << "   Jogar" << std::endl;
-				std::cout << "-> Salvar" << std::endl;
-				std::cout << "   Regras" << std::endl;
-				std::cout << "   Creditos" << std::endl;
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << newgame << std::endl;
+				std::cout << load_s << std::endl;
+				std::cout << rules << std::endl;
+				std::cout << credits << std::endl;
 				break;
 			case 2:
 				system("cls");
-				std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
-				std::cout << "   Jogar" << std::endl;
-				std::cout << "   Salvar" << std::endl;
-				std::cout << "-> Regras" << std::endl;
-				std::cout << "   Creditos" << std::endl;
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << newgame << std::endl;
+				std::cout << load << std::endl;
+				std::cout << rules_s << std::endl;
+				std::cout << credits << std::endl;
 				break;
 			case 3:
 				system("cls");
-				std::cout << "Welcome To BattleShip" << std::endl << std::endl << std::endl;
-				std::cout << "   Jogar" << std::endl;
-				std::cout << "   Salvar" << std::endl;
-				std::cout << "   Regras" << std::endl;
-				std::cout << "-> Creditos" << std::endl;
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << newgame << std::endl;
+				std::cout << load << std::endl;
+				std::cout << rules << std::endl;
+				std::cout << credits_s << std::endl;
 				break;
 
 			}
