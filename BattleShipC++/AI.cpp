@@ -1,7 +1,4 @@
 #include "AI.h"
-#include "Submarine.h"
-#include <iostream>
-#include <math.h>
 
 
 AI::AI() : Player(){
@@ -13,10 +10,9 @@ AI::~AI() {
 
 void AI::putShip() {
 	Submarine *sub = new Submarine;
-	//Submarine sub;
 	int x, y;
 
-	//checks collision
+	//generates random positions and checks adjacent ships
 	do{
 	x = rand() % 10 + 1;
 	y = rand() % 10 + 1;
@@ -28,5 +24,35 @@ void AI::putShip() {
 		getBoard().setMatrixCell(sub->getLocation());
 		setShips(sub);
 		setNShips(getNShips() + 1);
+	
+}
+
+void AI::play(Player &enemy, Draw drawManager) {
+	int x, y;
+	system("cls");
+	cout << "AI Turn" << endl;
+
+	if (getNMoves() == 99) {
+		setAmmo(1);
+	} else {
+		setAmmo(3);
+	}
+
+	while (getAmmo() > 0) {
+		x = rand() % 10 + 1;
+		y = rand() % 10 + 1;
+
+		playMove(x, y, enemy);
+
+		if (enemy.getNShips() == 0)
+			break;
+
+		system("cls");
+		drawManager.DrawAI(); // AI + what AI moves
+		cout << endl;
+		drawManager.DrawPlayer(); // Player + Player moves
+		cout << "Shooting (" << x << "," << y << ")!" << endl;
+		//system("pause");
+	}
 	
 }

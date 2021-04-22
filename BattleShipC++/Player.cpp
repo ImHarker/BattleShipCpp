@@ -1,15 +1,19 @@
 #include "Player.h"
-#include "Submarine.h"
+
 
 
 Player::Player() {
 	int i;
 	name = "";
     playerN = 0;
-    shots = 3;
+    ammo = 3;
     nShips = 0;
+	nMoves = 0;
 	for (i = 0; i < 11; i++) {
 		ships[i] = NULL;
+	}
+	for (i = 0; i < 100; i++) {
+		moves[i] = NavalCoordinate(0, 0, '.');
 	}
 }
 
@@ -17,7 +21,7 @@ Player::~Player() {
 	int i;
 	for (i = 0; i < 11; i++) {
 		if(ships[i] != NULL)
-		delete ships[i];
+			delete ships[i];
 	}
 }
 
@@ -50,8 +54,8 @@ void Player::setPlayerN(int n) {
     playerN = n;
 }
 
-void Player::setShots(int n) {
-    shots = n;
+void Player::setAmmo(int n) {
+    ammo = n;
 }
 
 void Player::setNShips(int n) {
@@ -62,6 +66,14 @@ void Player::setShips(Ship *sh) {
     ships[nShips] = sh;
 }
 
+void Player::setNMoves(int n) {
+	nMoves = n;
+}
+
+void Player::setMoves(NavalCoordinate move) {
+	moves[nMoves] = move;
+}
+
 string Player::getName() {
     return name;
 }
@@ -70,8 +82,8 @@ int Player::getPlayerN() {
     return playerN;
 }
 
-int Player::getShots() {
-    return shots;
+int Player::getAmmo() {
+    return ammo;
 }
 
 Board &Player::getBoard() {
@@ -90,7 +102,7 @@ Ship *Player::getShip(int n) {
     return ships[n];
 }
 
-bool Player::isAdjacent(int x, int y) {
+bool Player::isAdjacent(int x, int y) { //Refactor needed to handle other ships... Only works for submarines
     bool adj = false;
 	int i;
 	if (x == 1) {
@@ -140,4 +152,51 @@ bool Player::isAdjacent(int x, int y) {
 		}
 	}
 	return adj;
+}
+
+int Player::getNMoves() {
+	return nMoves;
+}
+
+NavalCoordinate Player::getMove(int n) {
+	return moves[n];
+}
+
+void Player::play(Player &enemy, Draw drawManager) {
+	system("cls");
+	cout << "Player Turn" << endl;
+	system("pause");
+}
+
+void Player::playMove(int x, int y, Player& enemy) {
+	int i, j;
+	NavalCoordinate move;
+	for (i = 0; i < 100; i++) {
+		if (x == getMove(i).getIntX() && y == getMove(i).getY()) return;
+	}
+		
+	for (j = 0; j < 11; j++) {
+				if (x == enemy.getShip(j)->getLocation().getIntX() && y == enemy.getShip(j)->getLocation().getY()) {
+					move.setX(x);
+					move.setY(y);
+					move.setC('T');
+					enemy.getBoard().setMatrixCell(move);
+					enemy.setNShips(enemy.getNShips() - 1); //Refactor to different ships
+					getBoardView().setMatrixCell(move);
+					setMoves(move);
+					setNMoves(getNMoves() + 1);
+					setAmmo(getAmmo() - 1);
+					return;
+				}else if(j == 10){
+					move.setX(x);
+					move.setY(y);
+					move.setC('A');
+					enemy.getBoard().setMatrixCell(move);
+					getBoardView().setMatrixCell(move);
+					setMoves(move);
+					setNMoves(getNMoves() + 1);
+					setAmmo(getAmmo() - 1);
+					return;
+		}
+	}
 }

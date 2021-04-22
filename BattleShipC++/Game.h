@@ -8,10 +8,12 @@ class Game {
 private:
 	std::string gameState;
 	bool gameover;
+	int turns;
 public:
 	void GameLoop();
 	void InitGame(Player &p, AI &AI, Draw &drawManager);
 
 	void setGameOver(bool g);
 	bool getGameOver();
+	
 };

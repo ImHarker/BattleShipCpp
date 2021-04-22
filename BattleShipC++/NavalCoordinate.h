@@ -15,7 +15,7 @@ class NavalCoordinate {
 
 		char getX() const;
 		int getIntX() const;
-		bool setX(int yy);
+		bool setX(int xx);
 		bool setX(char xx);
 		
 		int getY() const;

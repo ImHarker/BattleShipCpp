@@ -2,8 +2,8 @@
 #include <math.h>
 #include <time.h>
 int main() {
-	srand(time(NULL));
-	Draw::Menu();
+	srand((int)time(NULL));
+	Draw::Menu(); //Draws menu and menu handles everything
 
 	return 0;
 }

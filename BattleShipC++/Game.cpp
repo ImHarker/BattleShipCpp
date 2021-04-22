@@ -1,14 +1,24 @@
-#include <iostream>
 #include "Game.h"
+#include <iostream>
+#include <math.h>
 void Game::GameLoop() {
 	Player p;
 	AI AI;
 	Draw drawManager(p.getBoard(), p.getBoardView(), AI.getBoard(), AI.getBoardView());
 
+	p.setPlayerN(rand() % 2 + 1);
+	if (p.getPlayerN() == 1) {
+		AI.setPlayerN(2);
+	} else {
+		AI.setPlayerN(1);
+	}
+
+	turns = 0;
 	gameover = false;
 	gameState = "init";
 
 	while (!gameover) {
+#pragma region INIT
 		if (gameState == "init") {
 
 			//while (1) { //debug
@@ -18,15 +28,51 @@ void Game::GameLoop() {
 			//} //debug
 
 			}
+#pragma endregion
+
+		if (p.getPlayerN() == 1) {
+			p.play(AI, drawManager);
+			if (AI.getNShips() == 0) {
+				gameover = true;
+				break;
+			}
+			AI.play(p, drawManager);
+			if (p.getNShips() == 0) {
+				gameover = true;
+				break;
+			}
+			turns++;
+		} else {
+			AI.play(p, drawManager);
+			if (p.getNShips() == 0) {
+				gameover = true;
+				break;
+			}
+			p.play(AI, drawManager);
+			if (AI.getNShips() == 0) {
+				gameover = true;
+				break;
+			}
+			turns++;
+		}
 		system("cls");
+		drawManager.DrawAI();
 		drawManager.DrawPlayer();
-	
-		return; //end
+		system("pause");
+		//return; //get out the loop DEBUG
+	}
+
+	if (p.getNShips() == 0) {
+		system("cls");
+		cout << "AI WON! with " << AI.getNMoves() << " shots taken in " << turns << " turns! The player shot " << p.getNMoves() << " times" << endl;
+	} else {
+		cout << "Player WON! with " << p.getNMoves() << " shots taken in " << turns << " turns! The AI shot " << AI.getNMoves() << " times" << endl;
 	}
 	
 }
 
 void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {
+#pragma region AI_Ships
 	while (AI.getNShips() < 11) {
 		system("cls");
 		drawManager.DrawBoard(8, 4, AI.getBoard());
@@ -34,17 +80,18 @@ void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {
 		system("cls");
 		drawManager.DrawBoard(8, 4, AI.getBoard());
 	}
-	
+#pragma endregion
 	system("pause"); //debug
 
-	//while (p.getNShips() < 11) {
-	//	system("cls");
-	//	drawManager.DrawBoard(8, 4, p.getBoard());
-	//	p.putShip();
-	//	system("cls");
-	//	drawManager.DrawBoard(8, 4, p.getBoard());
-	//}
-
+#pragma region Player_Ships
+	while (p.getNShips() < 11) {
+		system("cls");
+		drawManager.DrawBoard(8, 4, p.getBoard());
+		p.putShip();
+		system("cls");
+		drawManager.DrawBoard(8, 4, p.getBoard());
+	}
+#pragma endregion
 	
 	gameState = "game";
 }

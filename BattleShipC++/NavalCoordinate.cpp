@@ -78,7 +78,6 @@ bool NavalCoordinate::setX(int xx) {
 void NavalCoordinate::ask2Set() {
 	char xx;
 	int yy;
-	char cc;
 
 	do {
 		std::cout << "Insert a value to X: ";
