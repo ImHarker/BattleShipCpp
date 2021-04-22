@@ -55,15 +55,24 @@ void Draw::Menu() {
   __\ \   / __| | _ \ | __| |   \  |_ _| |_   _| / __|
  |___> > | (__  |   / | _|  | |) |  | |    | |   \__ \
     /_/   \___| |_|_\ |___| |___/  |___|   |_|   |___/)";
+	string exit = R"(	  ___  __  __  ___   _____ 
+	 | __| \ \/ / |_ _| |_   _|
+	 | _|   >  <   | |    | |  
+	 |___| /_/\_\ |___|   |_|  )";
+	string exit_s = R"(    __    ___  __  __  ___   _____ 
+  __\ \  | __| \ \/ / |_ _| |_   _|
+ |___> > | _|   >  <   | |    | |  
+    /_/  |___| /_/\_\ |___|   |_|)";
 
 	bool inmenu = true;
 	int menu = 500000;
 	int _menu = 1;
-	std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+	std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl;
 	std::cout << newgame_s << std::endl;
 	std::cout << load << std::endl;
 	std::cout << rules << std::endl;
 	std::cout << credits << std::endl;
+	std::cout << exit << std::endl;
 
 	while (inmenu) {
 		switch (_getch()) {
@@ -74,7 +83,7 @@ void Draw::Menu() {
 			menu++;  // key down
 			break;
 		case 13:
-			switch (abs(menu % 4)) {
+			switch (menu % 5) {
 			case 0:
 				system("cls");
 				inmenu = false;
@@ -82,12 +91,12 @@ void Draw::Menu() {
 				break;
 			case 1:
 				system("cls");
-				std::cout << "SALVAR!";
+				std::cout << "Load!";
 				inmenu = false;
 				break;
 			case 2:
 				system("cls");
-				std::cout << "REGRAS!";
+				std::cout << "Rules!";
 				inmenu = false;
 				break;
 			case 3:
@@ -97,44 +106,57 @@ void Draw::Menu() {
 				std::cout << "  Universidade de Tras-os-Montes e Alto Douro" << std::endl;
 				inmenu = false;
 				break;
+			case 4:
+				return;
 			}
 			break;
 		}
 		if (menu != _menu && inmenu) {
-			switch (abs(menu % 4)) {
+			switch (menu % 5) {
 			case 0:
 				system("cls");
-				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl;
 				std::cout << newgame_s << std::endl;
 				std::cout << load << std::endl;
 				std::cout << rules << std::endl;
 				std::cout << credits << std::endl;
+				std::cout << exit << std::endl;
 				break;
 			case 1:
 				system("cls");
-				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl;
 				std::cout << newgame << std::endl;
 				std::cout << load_s << std::endl;
 				std::cout << rules << std::endl;
 				std::cout << credits << std::endl;
+				std::cout << exit << std::endl;
 				break;
 			case 2:
 				system("cls");
-				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl;
 				std::cout << newgame << std::endl;
 				std::cout << load << std::endl;
 				std::cout << rules_s << std::endl;
 				std::cout << credits << std::endl;
+				std::cout << exit << std::endl;
 				break;
 			case 3:
 				system("cls");
-				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl;
 				std::cout << newgame << std::endl;
 				std::cout << load << std::endl;
 				std::cout << rules << std::endl;
 				std::cout << credits_s << std::endl;
+				std::cout << exit << std::endl;
 				break;
-
+			case 4:
+				system("cls");
+				std::cout << battle << std::endl << std::endl << std::endl << std::endl << std::endl;
+				std::cout << newgame << std::endl;
+				std::cout << load << std::endl;
+				std::cout << rules << std::endl;
+				std::cout << credits << std::endl;
+				std::cout << exit_s << std::endl;
 			}
 			_menu = menu;
 		}

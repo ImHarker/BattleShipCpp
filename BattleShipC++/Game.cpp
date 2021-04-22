@@ -20,7 +20,10 @@ void Game::GameLoop() {
 			}
 		system("cls");
 		drawManager.DrawPlayer();
+	
+		return; //end
 	}
+	
 }
 
 void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {
@@ -31,16 +34,16 @@ void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {
 		system("cls");
 		drawManager.DrawBoard(8, 4, AI.getBoard());
 	}
-
+	
 	system("pause"); //debug
 
-	while (p.getNShips() < 11) {
-		system("cls");
-		drawManager.DrawBoard(8, 4, p.getBoard());
-		p.putShip();
-		system("cls");
-		drawManager.DrawBoard(8, 4, p.getBoard());
-	}
+	//while (p.getNShips() < 11) {
+	//	system("cls");
+	//	drawManager.DrawBoard(8, 4, p.getBoard());
+	//	p.putShip();
+	//	system("cls");
+	//	drawManager.DrawBoard(8, 4, p.getBoard());
+	//}
 
 	
 	gameState = "game";

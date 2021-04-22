@@ -8,8 +8,12 @@ AI::AI() : Player(){
 
 }
 
+AI::~AI() {
+}
+
 void AI::putShip() {
-	Submarine sub;
+	Submarine *sub = new Submarine;
+	//Submarine sub;
 	int x, y;
 
 	//checks collision
@@ -18,10 +22,10 @@ void AI::putShip() {
 	y = rand() % 10 + 1;
 	}while (isAdjacent(x,y));
 
-		sub.getLocation().setX(x);
-		sub.getLocation().setY(y);
-		sub.getLocation().setC('O');
-		getBoard().setMatrixCell(sub.getLocation());
+		sub->getLocation().setX(x);
+		sub->getLocation().setY(y);
+		sub->getLocation().setC('O');
+		getBoard().setMatrixCell(sub->getLocation());
 		setShips(sub);
 		setNShips(getNShips() + 1);
 	

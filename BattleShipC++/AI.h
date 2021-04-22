@@ -3,6 +3,7 @@
 class AI : public Player {
 public:
 	AI();
-	void putShip();
+	virtual ~AI();
+	virtual void putShip();
 };
 

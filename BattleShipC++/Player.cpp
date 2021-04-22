@@ -3,24 +3,33 @@
 
 
 Player::Player() {
-    name = "";
+	int i;
+	name = "";
     playerN = 0;
     shots = 3;
     nShips = 0;
+	for (i = 0; i < 11; i++) {
+		ships[i] = NULL;
+	}
 }
 
 Player::~Player() {
+	int i;
+	for (i = 0; i < 11; i++) {
+		if(ships[i] != NULL)
+		delete ships[i];
+	}
 }
 
 void Player::putShip() {
-    Submarine sub;
+    Submarine *sub = new Submarine;
     cout << endl << endl;
 	do {
-		sub.getLocation().ask2Set();
-		if (isAdjacent(sub.getLocation().getIntX(), sub.getLocation().getY())) cout << "Invalid position: Adjacent Ships!" << endl;
-	} while (isAdjacent(sub.getLocation().getIntX(), sub.getLocation().getY()));
-	sub.getLocation().setC('O');
-    getBoard().setMatrixCell(sub.getLocation());
+		sub->getLocation().ask2Set();
+		if (isAdjacent(sub->getLocation().getIntX(), sub->getLocation().getY())) cout << "Invalid position (" << sub->getLocation().getX() << sub->getLocation().getY() <<"): Adjacent Ships!" << endl;
+	} while (isAdjacent(sub->getLocation().getIntX(), sub->getLocation().getY()));
+	sub->getLocation().setC('O');
+    getBoard().setMatrixCell(sub->getLocation());
     ships[nShips] = sub;
     nShips++;
 }
@@ -49,7 +58,7 @@ void Player::setNShips(int n) {
     nShips = n;
 }
 
-void Player::setShips(Ship sh) {
+void Player::setShips(Ship *sh) {
     ships[nShips] = sh;
 }
 
@@ -77,7 +86,7 @@ int Player::getNShips() {
     return nShips;
 }
 
-Ship Player::getShip(int n) {
+Ship *Player::getShip(int n) {
     return ships[n];
 }
 
@@ -86,7 +95,7 @@ bool Player::isAdjacent(int x, int y) {
 	int i;
 	if (x == 1) {
 		for (i = 0; i < getNShips(); i++) {
-			if ((getShip(i).getLocation().getIntX() == x && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getIntX() == x + 1 && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1 || getShip(i).getLocation().getY() == y)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+			if ((getShip(i)->getLocation().getIntX() == x && (getShip(i)->getLocation().getY() == y + 1 || getShip(i)->getLocation().getY() == y - 1)) || (getShip(i)->getLocation().getIntX() == x + 1 && (getShip(i)->getLocation().getY() == y + 1 || getShip(i)->getLocation().getY() == y - 1 || getShip(i)->getLocation().getY() == y)) || (getShip(i)->getLocation().getIntX() == x && getShip(i)->getLocation().getY() == y)) {
 				adj = true;
 				break;
 			} else {
@@ -95,7 +104,7 @@ bool Player::isAdjacent(int x, int y) {
 		}
 	} else if (y == 1) {
 		for (i = 0; i < getNShips(); i++) {
-			if ((getShip(i).getLocation().getY() == y && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1)) || (getShip(i).getLocation().getY() == y + 1 && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1 || getShip(i).getLocation().getIntX() == x)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+			if ((getShip(i)->getLocation().getY() == y && (getShip(i)->getLocation().getIntX() == x + 1 || getShip(i)->getLocation().getIntX() == x - 1)) || (getShip(i)->getLocation().getY() == y + 1 && (getShip(i)->getLocation().getIntX() == x + 1 || getShip(i)->getLocation().getIntX() == x - 1 || getShip(i)->getLocation().getIntX() == x)) || (getShip(i)->getLocation().getIntX() == x && getShip(i)->getLocation().getY() == y)) {
 				adj = true;
 				break;
 			} else {
@@ -104,7 +113,7 @@ bool Player::isAdjacent(int x, int y) {
 		}
 	} else if (x == 10) {
 		for (i = 0; i < getNShips(); i++) {
-			if ((getShip(i).getLocation().getIntX() == x && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getIntX() == x - 1 && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1 || getShip(i).getLocation().getY() == y)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+			if ((getShip(i)->getLocation().getIntX() == x && (getShip(i)->getLocation().getY() == y + 1 || getShip(i)->getLocation().getY() == y - 1)) || (getShip(i)->getLocation().getIntX() == x - 1 && (getShip(i)->getLocation().getY() == y + 1 || getShip(i)->getLocation().getY() == y - 1 || getShip(i)->getLocation().getY() == y)) || (getShip(i)->getLocation().getIntX() == x && getShip(i)->getLocation().getY() == y)) {
 				adj = true;
 				break;
 			} else {
@@ -113,7 +122,7 @@ bool Player::isAdjacent(int x, int y) {
 		}
 	} else if (y == 10) {
 		for (i = 0; i < getNShips(); i++) {
-			if ((getShip(i).getLocation().getY() == y && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1)) || (getShip(i).getLocation().getY() == y - 1 && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1 || getShip(i).getLocation().getIntX() == x)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+			if ((getShip(i)->getLocation().getY() == y && (getShip(i)->getLocation().getIntX() == x + 1 || getShip(i)->getLocation().getIntX() == x - 1)) || (getShip(i)->getLocation().getY() == y - 1 && (getShip(i)->getLocation().getIntX() == x + 1 || getShip(i)->getLocation().getIntX() == x - 1 || getShip(i)->getLocation().getIntX() == x)) || (getShip(i)->getLocation().getIntX() == x && getShip(i)->getLocation().getY() == y)) {
 				adj = true;
 				break;
 			} else {
@@ -122,7 +131,7 @@ bool Player::isAdjacent(int x, int y) {
 		}
 	} else {
 		for (i = 0; i < getNShips(); i++) {
-			if ((getShip(i).getLocation().getIntX() == x && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getY() == y && (getShip(i).getLocation().getIntX() == x + 1 || getShip(i).getLocation().getIntX() == x - 1)) || (getShip(i).getLocation().getIntX() == x + 1 && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getIntX() == x - 1 && (getShip(i).getLocation().getY() == y + 1 || getShip(i).getLocation().getY() == y - 1)) || (getShip(i).getLocation().getIntX() == x && getShip(i).getLocation().getY() == y)) {
+			if ((getShip(i)->getLocation().getIntX() == x && (getShip(i)->getLocation().getY() == y + 1 || getShip(i)->getLocation().getY() == y - 1)) || (getShip(i)->getLocation().getY() == y && (getShip(i)->getLocation().getIntX() == x + 1 || getShip(i)->getLocation().getIntX() == x - 1)) || (getShip(i)->getLocation().getIntX() == x + 1 && (getShip(i)->getLocation().getY() == y + 1 || getShip(i)->getLocation().getY() == y - 1)) || (getShip(i)->getLocation().getIntX() == x - 1 && (getShip(i)->getLocation().getY() == y + 1 || getShip(i)->getLocation().getY() == y - 1)) || (getShip(i)->getLocation().getIntX() == x && getShip(i)->getLocation().getY() == y)) {
 				adj = true;
 				break;
 			} else {

@@ -9,7 +9,7 @@ private:
 	string name;
 	string moves[100];
 	Board board, boardView;
-	Ship ships[11];
+	Ship *ships[11];
 	int playerN;
 	int shots;
 	int nShips;
@@ -17,7 +17,7 @@ public:
 	Player();
 	~Player();
 
-	void putShip();
+	virtual void putShip();
 
 
 	void setName(string n);
@@ -26,7 +26,7 @@ public:
 	void setPlayerN(int n);
 	void setShots(int n);
 	void setNShips(int n);
-	void setShips(Ship sh);
+	void setShips(Ship *sh);
 
 	string getName();
 	int getPlayerN();
@@ -34,7 +34,7 @@ public:
 	Board &getBoard();
 	Board& getBoardView();
 	int getNShips();
-	Ship getShip(int n);
+	Ship *getShip(int n);
 	bool isAdjacent(int x, int y);
 
 };
