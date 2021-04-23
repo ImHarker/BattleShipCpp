@@ -81,6 +81,8 @@ void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {
 		drawManager.DrawBoard(8, 4, AI.getBoard());
 	}
 #pragma endregion
+	system("cls");
+	cout << AI;
 	system("pause"); //debug
 
 #pragma region Player_Ships
@@ -102,4 +104,9 @@ void Game::setGameOver(bool g) {
 
 bool Game::getGameOver() {
 	return gameover;
+}
+
+std::ostream& operator<<(std::ostream& os, const Game gm) {
+	os << gm.gameState << ";" << gm.gameover << ";" << gm.turns << ";";
+	return os;
 }

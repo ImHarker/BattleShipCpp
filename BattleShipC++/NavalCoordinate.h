@@ -30,6 +30,8 @@ class NavalCoordinate {
 
 		bool operator == (const NavalCoordinate p) const;
 		bool operator != (const NavalCoordinate p) const;
+		void operator = (const NavalCoordinate p);
 
+		friend std::ostream& operator<<(std::ostream& os, const NavalCoordinate nc);
 };
 

@@ -116,3 +116,15 @@ bool NavalCoordinate::operator != (const NavalCoordinate p) const {
 
 	return true;
 }
+
+void NavalCoordinate::operator=(const NavalCoordinate p) {
+	x = p.getX();
+	y = p.getY();
+	c = p.getC();
+}
+
+std::ostream& operator<<(std::ostream& os, const NavalCoordinate nc) {
+	os << "(" << nc.getIntX() << "," << nc.getY() << "," << nc.getC() << ")" << ";";
+
+	return os;
+}

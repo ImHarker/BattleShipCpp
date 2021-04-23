@@ -22,5 +22,7 @@ public:
 	NavalCoordinate getMatrixCell(int row, int col);
 
 	void reset();
+
+	friend std::ostream& operator<<(std::ostream& os, const Board b);
 };
 

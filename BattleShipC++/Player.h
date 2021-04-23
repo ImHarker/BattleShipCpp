@@ -47,5 +47,7 @@ public:
 	virtual void play(Player &enemy, Draw drawManager);
 	void playMove(int x, int y, Player& enemy);
 
+	friend std::ostream& operator<<(std::ostream& os, const Player p);
+
 };
 

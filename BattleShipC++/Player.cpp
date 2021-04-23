@@ -200,3 +200,22 @@ void Player::playMove(int x, int y, Player& enemy) {
 		}
 	}
 }
+
+std::ostream& operator<<(std::ostream& os, const Player p) {
+	int i;
+	os << p.name << ";";
+	os << std::endl;
+	for (i = 0; i < 100; i++) {
+		os << p.moves[i];
+	}
+	os << std::endl;
+	os << p.board;
+	os << p.boardView;
+	for (i = 0; i < 11; i++) {
+		os << *p.ships[i];
+	}
+
+	os << p.nMoves << ";" << p.playerN << ";" << p.ammo << ";" << p.nShips << ";";
+	
+	return os;
+}

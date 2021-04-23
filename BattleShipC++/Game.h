@@ -16,4 +16,5 @@ public:
 	void setGameOver(bool g);
 	bool getGameOver();
 	
+	friend std::ostream& operator<<(std::ostream& os, const Game gm);
 };

@@ -67,3 +67,17 @@ void Board::reset() {
 	}
 }
 
+std::ostream& operator<<(std::ostream& os, const Board b) {
+	int i, j;
+	os << b.width << ";" << b.height << ";";
+	os << std::endl;
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 10; j++) {
+			os << b.matrix[i][j];
+		}
+		os << std::endl;
+	}
+	
+	return os;
+
+}

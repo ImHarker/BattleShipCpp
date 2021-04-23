@@ -34,3 +34,8 @@ void Ship::hit(){
 void Ship::sink() {
 	sunken = true;
 }
+
+std::ostream& operator<<(std::ostream& os, const Ship sh) {
+	os << sh.location << sh.w << ";" << sh.h << ";" << sh.hits << ";" << sh.sunken << ";";
+	return os;
+}

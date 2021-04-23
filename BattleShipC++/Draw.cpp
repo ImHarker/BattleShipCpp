@@ -104,6 +104,7 @@ void Draw::Menu() {
 				std::cout << (char)184 << " Gustavo Santos al70800" << std::endl;
 				std::cout << "  Vasco Teixeira al74107" << std::endl;
 				std::cout << "  Universidade de Tras-os-Montes e Alto Douro" << std::endl;
+				system("start https://github.com/ImHarker/BattleShipCpp");
 				inmenu = false;
 				break;
 			case 4:
