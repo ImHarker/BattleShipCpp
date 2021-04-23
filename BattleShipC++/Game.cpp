@@ -31,6 +31,7 @@ void Game::GameLoop() {
 #pragma endregion
 
 		if (p.getPlayerN() == 1) {
+			turns++;
 			p.play(AI, drawManager);
 			if (AI.getNShips() == 0) {
 				gameover = true;
@@ -41,8 +42,8 @@ void Game::GameLoop() {
 				gameover = true;
 				break;
 			}
-			turns++;
 		} else {
+			turns++;
 			AI.play(p, drawManager);
 			if (p.getNShips() == 0) {
 				gameover = true;
@@ -53,13 +54,20 @@ void Game::GameLoop() {
 				gameover = true;
 				break;
 			}
-			turns++;
 		}
+
+		//DEBUG
 		system("cls");
 		drawManager.DrawAI();
 		drawManager.DrawPlayer();
 		system("pause");
-		//return; //get out the loop DEBUG
+
+		//DEBUG
+		system("cls");
+		cout << "AI" << AI << endl;
+		cout << "Player" << p << endl;
+		cout << "Game Data" << endl << *this << endl;
+		system("pause"); //debug 
 	}
 
 	if (p.getNShips() == 0) {
@@ -81,9 +89,6 @@ void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {
 		drawManager.DrawBoard(8, 4, AI.getBoard());
 	}
 #pragma endregion
-	system("cls");
-	cout << AI;
-	system("pause"); //debug
 
 #pragma region Player_Ships
 	while (p.getNShips() < 11) {

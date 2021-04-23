@@ -181,7 +181,9 @@ void Player::playMove(int x, int y, Player& enemy) {
 					move.setY(y);
 					move.setC('T');
 					enemy.getBoard().setMatrixCell(move);
-					enemy.setNShips(enemy.getNShips() - 1); //Refactor to different ships
+					enemy.getShip(j)->hit();
+					if(enemy.getShip(j)->integrity())
+						enemy.setNShips(enemy.getNShips() - 1);
 					getBoardView().setMatrixCell(move);
 					setMoves(move);
 					setNMoves(getNMoves() + 1);
@@ -201,7 +203,7 @@ void Player::playMove(int x, int y, Player& enemy) {
 	}
 }
 
-std::ostream& operator<<(std::ostream& os, const Player p) {
+std::ostream& operator<<(std::ostream& os, Player &p) {
 	int i;
 	os << p.name << ";";
 	os << std::endl;

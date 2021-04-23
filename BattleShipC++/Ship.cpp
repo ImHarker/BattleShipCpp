@@ -31,8 +31,12 @@ void Ship::hit(){
 	hits++;
 }
 
-void Ship::sink() {
-	sunken = true;
+bool Ship::integrity() {
+	if (hits == w * h) {
+		sunken = true;
+		return true;
+	}
+	return false;
 }
 
 std::ostream& operator<<(std::ostream& os, const Ship sh) {

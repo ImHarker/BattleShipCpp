@@ -15,7 +15,7 @@ public:
 
 	void setSize(int width, int height);
 	void hit();
-	void sink();
+	bool integrity();
 
 	friend std::ostream& operator<<(std::ostream& os, const Ship sh);
 };
