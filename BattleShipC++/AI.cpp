@@ -2,7 +2,7 @@
 
 
 AI::AI() : Player(){
-
+	setName("AI");
 }
 
 AI::~AI() {

@@ -163,16 +163,43 @@ NavalCoordinate Player::getMove(int n) {
 }
 
 void Player::play(Player &enemy, Draw drawManager) {
+	NavalCoordinate move;
 	system("cls");
 	cout << "Player Turn" << endl;
-	system("pause");
+	if (getNMoves() == 99) {
+		setAmmo(1);
+	} else {
+		setAmmo(3);
+	}
+
+	while (getAmmo() > 0) {
+		move.ask2Set();
+
+		playMove(move.getIntX(), move.getY(), enemy);
+
+		if (enemy.getNShips() == 0)
+			break;
+
+		system("cls");
+		drawManager.DrawAI(); // AI + what AI moves
+		cout << endl;
+		drawManager.DrawPlayer(); // Player + Player moves
+		cout << "Shooting (" << move.getIntX() << "," << move.getY() << ")!" << endl;
+		system("pause");
+	}
 }
 
 void Player::playMove(int x, int y, Player& enemy) {
 	int i, j;
 	NavalCoordinate move;
 	for (i = 0; i < 100; i++) {
-		if (x == getMove(i).getIntX() && y == getMove(i).getY()) return;
+		if (x == getMove(i).getIntX() && y == getMove(i).getY()) { 
+			if (enemy.getName() == "AI") {
+				cout << "You already played in this coordinate!" << endl;
+				system("pause");
+			}
+			return;
+		}
 	}
 		
 	for (j = 0; j < 11; j++) {
