@@ -63,6 +63,52 @@ void Draw::Menu() {
   __\ \  | __| \ \/ / |_ _| |_   _|
  |___> > | _|   >  <   | |    | |  
     /_/  |___| /_/\_\ |___|   |_|)";
+	string rules_txt = R"(The gameplay is straightforward. Each player hides ships on a grid containing vertical and horizontal space coordinates. 
+Players take turns calling out column(X) and row(Y) coordinates on the other player's grid in an attempt to identify a 
+square that contains a ship. 
+
+The game has two grids: right and left grid. 
+The left grid is used by the player to "hide" the location of his own ships, while the right grid is used to record the shots fired toward the opponent and to document whether those shots were hits or misses.
+
+How to Play the Game
+
+		Each player has 11 ships of varying lengths:
+
+			+-----+------------+---------+------+
+			|COUNT|    NAME    |  SHAPE  |  HP  | 
+			|  4  | Submarine  | 1 by 1  |   1  |
+			|  3  | Destroyer  | 2 by 1  |   2  |
+			|  2  | Cruiser    | 3 by 1  |   3  |
+			|  1  | Battleship | 4 by 1  |   4  |
+			|  1  | Carrier    | T shape |   5  |
+			+-----+------------+---------+------+
+	
+		Each player will place the 11 ships in the board and must follow these rules:
+			The ships can only be place in the vertical or horizontal axis
+			Ships can't be adjacent to each other
+	
+		Each ship has a Health value, the HP is the number of spots that the ship occupy in the board.
+ 
+		Each player will take 3 shots per turn, bellow you can see the key that we will use to represent shots 
+		and ships.
+		
+	Destroying Ships
+		
+		To destroy a ship the player will need to hit every spot that the ship occupies in the board.
+		
+	
+	The Board
+	
+		The board is a 10x10 grid with X(columns) and Y(rows) coordinates
+		
+		We gonna use the following key to represent shots hit, ships, shots missed and free places:
+
+				'.' - Represents an empty space
+				'O' - Represents a ship
+				'T' - Represents a ship that was hit
+				'A' - Represents a missed shot
+
+)";
 
 	bool inmenu = true;
 	int menu = 500000;
@@ -96,8 +142,9 @@ void Draw::Menu() {
 				break;
 			case 2:
 				system("cls");
-				std::cout << "Rules!";
-				inmenu = false;
+				std::cout << rules_txt;
+				system("pause");
+				menu = 500000;
 				break;
 			case 3:
 				system("cls");
