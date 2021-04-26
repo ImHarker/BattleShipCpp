@@ -238,8 +238,9 @@ How to Play the Game
 				system("cls");
 				std::cout << (char)184 << " Gustavo Santos al70800" << std::endl;
 				std::cout << "  Vasco Teixeira al74107" << std::endl;
-				std::cout << "  Universidade de Tras-os-Montes e Alto Douro" << std::endl;
+				std::cout << "  Universidade de Tras-os-Montes e Alto Douro" << std::endl << std::endl << std::endl;
 				system("start https://github.com/ImHarker/BattleShipCpp");
+				system("pause");
 				inmenu = false;
 				break;
 			case 4:

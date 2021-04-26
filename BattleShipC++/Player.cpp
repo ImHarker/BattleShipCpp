@@ -172,7 +172,7 @@ void Player::play(Player &enemy, Draw drawManager) {
 		setAmmo(3);
 	}
 
-	while (getAmmo() > 0) {
+	while (getAmmo() > 0 && getNShips() > 0) {
 		system("cls");
 		drawManager.DrawPlayer(); // Player + Player moves
 		cout << endl;

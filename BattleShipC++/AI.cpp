@@ -38,7 +38,7 @@ void AI::play(Player &enemy, Draw drawManager) {
 		setAmmo(3);
 	}
 
-	while (getAmmo() > 0) {
+	while (getAmmo() > 0 && getNShips() > 0) {
 		x = rand() % 10 + 1;
 		y = rand() % 10 + 1;
 
