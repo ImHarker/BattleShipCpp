@@ -42,17 +42,14 @@ void AI::play(Player &enemy, Draw drawManager) {
 		x = rand() % 10 + 1;
 		y = rand() % 10 + 1;
 
-		playMove(x, y, enemy);
-
-		if (enemy.getNShips() == 0)
-			break;
-
 		system("cls");
-		drawManager.DrawAI(); // AI + what AI moves
-		cout << endl;
-		drawManager.DrawPlayer(); // Player + Player moves
-		cout << "Shooting (" << x << "," << y << ")!" << endl;
-		//system("pause");
+		cout << "Your Board";
+		drawManager.DrawBoard(8, 2, getBoardView());
+		cout << endl << "AI is attemping to shoot at (" << (char)(x + 64) << "," << y << ")!" << endl;
+		Sleep(2500);
+
+		playMove(x, y, enemy, drawManager);
+
 	}
 	
 }

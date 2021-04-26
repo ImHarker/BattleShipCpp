@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <Windows.h>
 #include "Board.h"
 #include "Ship.h"
 #include "Draw.h"
@@ -45,7 +46,7 @@ public:
 	NavalCoordinate getMove(int n);
 
 	virtual void play(Player &enemy, Draw drawManager);
-	void playMove(int x, int y, Player& enemy);
+	void playMove(int x, int y, Player& enemy, Draw drawManager);
 
 	friend std::ostream& operator<<(std::ostream& os, Player &p);
 

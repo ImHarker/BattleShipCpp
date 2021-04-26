@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <Windows.h>
 #include <iostream>
 #include <math.h>
 void Game::GameLoop() {
@@ -20,13 +21,7 @@ void Game::GameLoop() {
 	while (!gameover) {
 #pragma region INIT
 		if (gameState == "init") {
-
-			//while (1) { //debug
-			//	AI.getBoard().reset(); //debug
-			//	AI.setNShips(0); //debug
 				InitGame(p, AI, drawManager);
-			//} //debug
-
 			}
 #pragma endregion
 
@@ -57,17 +52,11 @@ void Game::GameLoop() {
 		}
 
 		//DEBUG
-		system("cls");
-		drawManager.DrawAI();
-		drawManager.DrawPlayer();
-		system("pause");
-
-		//DEBUG
-		system("cls");
-		cout << "AI" << AI << endl;
-		cout << "Player" << p << endl;
-		cout << "Game Data" << endl << *this << endl;
-		system("pause"); //debug 
+		//system("cls");
+		//cout << "AI" << AI << endl;
+		//cout << "Player" << p << endl;
+		//cout << "Game Data" << endl << *this << endl;
+		//system("pause"); //debug 
 	}
 
 	if (p.getNShips() == 0) {
@@ -80,22 +69,25 @@ void Game::GameLoop() {
 }
 
 void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {
+	int count = 1;
 #pragma region AI_Ships
 	while (AI.getNShips() < 11) {
 		system("cls");
-		drawManager.DrawBoard(8, 4, AI.getBoard());
+		cout << "AI is placing ships (" << count << "/11)" << endl;
 		AI.putShip();
-		system("cls");
-		drawManager.DrawBoard(8, 4, AI.getBoard());
+		count++;
+		Sleep(250);
 	}
 #pragma endregion
 
 #pragma region Player_Ships
 	while (p.getNShips() < 11) {
 		system("cls");
+		cout << "Select the location of your ships!"; 
 		drawManager.DrawBoard(8, 4, p.getBoard());
 		p.putShip();
 		system("cls");
+		cout << "Select the location of your ships!";
 		drawManager.DrawBoard(8, 4, p.getBoard());
 	}
 #pragma endregion

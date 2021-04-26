@@ -173,30 +173,33 @@ void Player::play(Player &enemy, Draw drawManager) {
 	}
 
 	while (getAmmo() > 0) {
+		system("cls");
+		drawManager.DrawPlayer(); // Player + Player moves
+		cout << endl;
 		move.ask2Set();
 
-		playMove(move.getIntX(), move.getY(), enemy);
-
-		if (enemy.getNShips() == 0)
-			break;
-
 		system("cls");
-		drawManager.DrawAI(); // AI + what AI moves
 		cout << endl;
 		drawManager.DrawPlayer(); // Player + Player moves
-		cout << "Shooting (" << move.getIntX() << "," << move.getY() << ")!" << endl;
-		system("pause");
+		cout << endl << "Shooting (" << move.getX() << "," << move.getY() << ")!" << endl;
+		Sleep(2500);
+
+		playMove(move.getIntX(), move.getY(), enemy, drawManager);
+
 	}
 }
 
-void Player::playMove(int x, int y, Player& enemy) {
+void Player::playMove(int x, int y, Player& enemy, Draw drawManager) {
 	int i, j;
 	NavalCoordinate move;
 	for (i = 0; i < 100; i++) {
 		if (x == getMove(i).getIntX() && y == getMove(i).getY()) { 
 			if (enemy.getName() == "AI") {
 				cout << "You already played in this coordinate!" << endl;
-				system("pause");
+				Sleep(2500);
+			} else {
+				cout << "Already played in this coordinate! Retrying..." << endl;
+				Sleep(2500);
 			}
 			return;
 		}
@@ -209,13 +212,31 @@ void Player::playMove(int x, int y, Player& enemy) {
 					move.setC('T');
 					enemy.getBoard().setMatrixCell(move);
 					enemy.getShip(j)->hit();
-					if(enemy.getShip(j)->integrity())
-						enemy.setNShips(enemy.getNShips() - 1);
 					getBoardView().setMatrixCell(move);
 					setMoves(move);
+
+					if (enemy.getName() == "AI") {
+						system("cls");
+						drawManager.DrawPlayer();
+					} else {
+						system("cls");
+						cout << "Your board";
+						drawManager.DrawBoard(8, 2, getBoardView());
+					}
+					cout << endl << "Successfully shot at (" << (char)(x + 64) << "," << y << ") and hit a ship!" << endl;
+
+					if (enemy.getShip(j)->integrity()) {
+						enemy.setNShips(enemy.getNShips() - 1);
+						if (enemy.getNShips() == 0) {
+							cout << "Last ship destroyed!" << endl;
+						}else
+							cout << "Ship destroyed! " << enemy.getNShips() << " remaining" << endl;
+					}
 					setNMoves(getNMoves() + 1);
 					setAmmo(getAmmo() - 1);
+					Sleep(2500);
 					return;
+
 				}else if(j == 10){
 					move.setX(x);
 					move.setY(y);
@@ -225,6 +246,16 @@ void Player::playMove(int x, int y, Player& enemy) {
 					setMoves(move);
 					setNMoves(getNMoves() + 1);
 					setAmmo(getAmmo() - 1);
+					if (enemy.getName() == "AI") {
+						system("cls");
+						drawManager.DrawPlayer();
+					} else {
+						system("cls");
+						cout << "AI turn" << endl << "Your board";
+						drawManager.DrawBoard(8, 2, getBoardView());
+					}
+					cout << endl << "Successfully shot at (" << (char)(x + 64) << "," << y << "), but it was water!" << endl << endl;
+					Sleep(2500);
 					return;
 		}
 	}
