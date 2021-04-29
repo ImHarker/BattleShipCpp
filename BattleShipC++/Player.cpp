@@ -162,10 +162,9 @@ NavalCoordinate Player::getMove(int n) {
 	return moves[n];
 }
 
-void Player::play(Player &enemy, Draw drawManager) {
+void Player::play(Player &enemy, Draw drawManager, int turns) {
 	NavalCoordinate move;
 	system("cls");
-	cout << "Player Turn" << endl;
 	if (getNMoves() == 99) {
 		setAmmo(1);
 	} else {
@@ -174,32 +173,35 @@ void Player::play(Player &enemy, Draw drawManager) {
 
 	while (getAmmo() > 0 && getNShips() > 0) {
 		system("cls");
+		drawManager.DrawScore(turns, getNShips(), enemy.getNShips());
+		cout << "Your Turn";
 		drawManager.DrawPlayer(); // Player + Player moves
 		cout << endl;
 		move.ask2Set();
 
 		system("cls");
-		cout << endl;
+		drawManager.DrawScore(turns, getNShips(), enemy.getNShips());
+		cout << "Your Turn";
 		drawManager.DrawPlayer(); // Player + Player moves
 		cout << endl << "Shooting (" << move.getX() << "," << move.getY() << ")!" << endl;
 		Sleep(2500);
 
-		playMove(move.getIntX(), move.getY(), enemy, drawManager);
+		playMove(move.getIntX(), move.getY(), enemy, drawManager, turns);
 
 	}
 }
 
-void Player::playMove(int x, int y, Player& enemy, Draw drawManager) {
+void Player::playMove(int x, int y, Player& enemy, Draw drawManager, int turns) {
 	int i, j;
 	NavalCoordinate move;
 	for (i = 0; i < 100; i++) {
 		if (x == getMove(i).getIntX() && y == getMove(i).getY()) { 
 			if (enemy.getName() == "AI") {
 				cout << "You already played in this coordinate!" << endl;
-				Sleep(2500);
+				Sleep(1500);
 			} else {
 				cout << "Already played in this coordinate! Retrying..." << endl;
-				Sleep(2500);
+				Sleep(1500);
 			}
 			return;
 		}
@@ -217,10 +219,13 @@ void Player::playMove(int x, int y, Player& enemy, Draw drawManager) {
 
 					if (enemy.getName() == "AI") {
 						system("cls");
+						drawManager.DrawScore(turns, getNShips(), enemy.getNShips());
+						cout << "Your Turn";
 						drawManager.DrawPlayer();
 					} else {
 						system("cls");
-						cout << "Your board";
+						drawManager.DrawScore(turns, enemy.getNShips(), getNShips());
+						cout << "AI Turn" << endl << "Your board";
 						drawManager.DrawBoard(8, 2, getBoardView());
 					}
 					cout << endl << "Successfully shot at (" << (char)(x + 64) << "," << y << ") and hit a ship!" << endl;
@@ -248,10 +253,13 @@ void Player::playMove(int x, int y, Player& enemy, Draw drawManager) {
 					setAmmo(getAmmo() - 1);
 					if (enemy.getName() == "AI") {
 						system("cls");
+						drawManager.DrawScore(turns, getNShips(), enemy.getNShips());
+						cout << "Your Turn";
 						drawManager.DrawPlayer();
 					} else {
 						system("cls");
-						cout << "AI turn" << endl << "Your board";
+						drawManager.DrawScore(turns, enemy.getNShips(), getNShips());
+						cout << "AI Turn" << endl << "Your board";
 						drawManager.DrawBoard(8, 2, getBoardView());
 					}
 					cout << endl << "Successfully shot at (" << (char)(x + 64) << "," << y << "), but it was water!" << endl << endl;

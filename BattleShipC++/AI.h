@@ -9,6 +9,6 @@ public:
 	virtual ~AI();
 	virtual void putShip();
 
-	virtual void play(Player &enemy, Draw drawManager);
+	virtual void play(Player &enemy, Draw drawManager, int turns);
 };
 

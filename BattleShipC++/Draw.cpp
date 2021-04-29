@@ -18,6 +18,10 @@ void Draw::DrawAI() {
 	DrawBoards(*boardsAI[0], *boardsAI[1], 8, 2);
 }
 
+void Draw::DrawScore(int turns, int PlayerShips, int AIShips) {
+	cout << "Turn: " << turns << "\t\t\tPlayer Ships: " << PlayerShips << "/11" << "\t\t\tAI Ships: " << AIShips << "/11"<<endl;
+}
+
 void Draw::Menu() {
 	Game game;
 	Player ex;

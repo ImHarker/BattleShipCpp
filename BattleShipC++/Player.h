@@ -19,7 +19,7 @@ private:
 	int nShips;
 public:
 	Player();
-	~Player();
+	virtual ~Player();
 
 	virtual void putShip();
 
@@ -45,8 +45,8 @@ public:
 	int getNMoves();
 	NavalCoordinate getMove(int n);
 
-	virtual void play(Player &enemy, Draw drawManager);
-	void playMove(int x, int y, Player& enemy, Draw drawManager);
+	virtual void play(Player &enemy, Draw drawManager, int turns);
+	void playMove(int x, int y, Player& enemy, Draw drawManager, int turns);
 
 	friend std::ostream& operator<<(std::ostream& os, Player &p);
 

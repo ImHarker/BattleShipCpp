@@ -27,24 +27,24 @@ void Game::GameLoop() {
 
 		if (p.getPlayerN() == 1) {
 			turns++;
-			p.play(AI, drawManager);
+			p.play(AI, drawManager, turns);
 			if (AI.getNShips() == 0) {
 				gameover = true;
 				break;
 			}
-			AI.play(p, drawManager);
+			AI.play(p, drawManager, turns);
 			if (p.getNShips() == 0) {
 				gameover = true;
 				break;
 			}
 		} else {
 			turns++;
-			AI.play(p, drawManager);
+			AI.play(p, drawManager, turns);
 			if (p.getNShips() == 0) {
 				gameover = true;
 				break;
 			}
-			p.play(AI, drawManager);
+			p.play(AI, drawManager, turns);
 			if (AI.getNShips() == 0) {
 				gameover = true;
 				break;
@@ -65,7 +65,7 @@ void Game::GameLoop() {
 	} else {
 		cout << "Player WON! with " << p.getNMoves() << " shots taken in " << turns << " turns! The AI shot " << AI.getNMoves() << " times" << endl;
 	}
-	
+	system("pause");
 }
 
 void Game::InitGame(Player &p, AI &AI, Draw &drawManager) {

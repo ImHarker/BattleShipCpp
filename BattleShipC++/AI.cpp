@@ -27,7 +27,7 @@ void AI::putShip() {
 	
 }
 
-void AI::play(Player &enemy, Draw drawManager) {
+void AI::play(Player &enemy, Draw drawManager, int turns) {
 	int x, y;
 	system("cls");
 	cout << "AI Turn" << endl;
@@ -43,12 +43,13 @@ void AI::play(Player &enemy, Draw drawManager) {
 		y = rand() % 10 + 1;
 
 		system("cls");
-		cout << "Your Board";
+		drawManager.DrawScore(turns, enemy.getNShips(), getNShips());
+		cout << "AI Turn" << endl << "Your Board";
 		drawManager.DrawBoard(8, 2, getBoardView());
 		cout << endl << "AI is attemping to shoot at (" << (char)(x + 64) << "," << y << ")!" << endl;
 		Sleep(2500);
 
-		playMove(x, y, enemy, drawManager);
+		playMove(x, y, enemy, drawManager, turns);
 
 	}
 	
