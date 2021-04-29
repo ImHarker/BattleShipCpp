@@ -3,5 +3,6 @@
 class Submarine : public Ship {
 	public:
 		Submarine();
+		virtual ~Submarine();
 };
 

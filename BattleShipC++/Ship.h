@@ -9,13 +9,13 @@ private:
 public:
 	Ship();
 	Ship(int width, int height);
-	~Ship();
+	virtual ~Ship();
 
 	NavalCoordinate& getLocation();
 
 	void setSize(int width, int height);
 	void hit();
-	bool integrity();
+	virtual bool integrity();
 
 	friend std::ostream& operator<<(std::ostream& os, const Ship sh);
 };
