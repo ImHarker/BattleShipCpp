@@ -171,7 +171,7 @@ void Player::play(Player &enemy, Draw drawManager, int turns) {
 		setAmmo(3);
 	}
 
-	while (getAmmo() > 0 && getNShips() > 0) {
+	while (getAmmo() > 0 && enemy.getNShips() > 0) {
 		system("cls");
 		drawManager.DrawScore(turns, getNShips(), enemy.getNShips());
 		cout << "Your Turn";
