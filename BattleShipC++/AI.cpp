@@ -16,7 +16,7 @@ void AI::putShip() {
 	do{
 	x = rand() % 10 + 1;
 	y = rand() % 10 + 1;
-	}while (isAdjacent(x,y));
+	}while (isAdjacent(sub));
 
 		sub->getLocation().setX(x);
 		sub->getLocation().setY(y);

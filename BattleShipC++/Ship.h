@@ -6,7 +6,6 @@ private:
 	int w, h;
 	int hits;
 	bool sunken;
-	char heading;
 public:
 	Ship();
 	Ship(int width, int height);
@@ -14,12 +13,12 @@ public:
 
 	NavalCoordinate& getLocation();
 
-	void setHeading(char head);
-	char getHeading();
 	int getW();
 	int getH();
+	int getHits();
 	void setSize(int width, int height);
 	void hit();
+	void sink();
 	virtual bool integrity();
 
 	friend std::ostream& operator<<(std::ostream& os, const Ship sh);

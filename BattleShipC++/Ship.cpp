@@ -5,7 +5,6 @@ Ship::Ship(){
 	h = 0;
 	hits = 0;
 	sunken = false;
-	heading = 'h';
 }
 
 
@@ -14,7 +13,6 @@ Ship::Ship(int width, int height) {
 	h = height;
 	hits = 0;
 	sunken = false;
-	heading = 'h';
 }
 
 Ship::~Ship(){
@@ -22,14 +20,6 @@ Ship::~Ship(){
 
 NavalCoordinate& Ship::getLocation() {
 	return location;
-}
-
-void Ship::setHeading(char head) {
-	heading = head;
-}
-
-char Ship::getHeading() {
-	return heading;
 }
 
 int Ship::getW() {
@@ -40,6 +30,10 @@ int Ship::getH() {
 	return h;
 }
 
+int Ship::getHits() {
+	return hits;
+}
+
 void Ship::setSize(int width, int height) {
 	w = width;
 	h = height;
@@ -47,6 +41,10 @@ void Ship::setSize(int width, int height) {
 
 void Ship::hit(){
 	hits++;
+}
+
+void Ship::sink() {
+	sunken = true;
 }
 
 bool Ship::integrity() {

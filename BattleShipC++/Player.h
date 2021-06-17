@@ -41,7 +41,7 @@ public:
 	Board& getBoardView();
 	int getNShips();
 	Ship *getShip(int n);
-	bool isAdjacent(int x, int y);
+	bool isAdjacent(Ship *ship);
 	int getNMoves();
 	NavalCoordinate getMove(int n);
 
