@@ -102,12 +102,28 @@ Ship *Player::getShip(int n) {
     return ships[n];
 }
 
-bool Player::isAdjacent(Ship *ship) { //Refactor needed to handle other ships... Only works for submarines
+bool Player::isAdjacent(Ship *ship) { //FIXED? Should work...
     bool adj = false;
 	int x = ship->getLocation().getIntX();
 	int y = ship->getLocation().getY();
-	int i;
-	if (x == 1) {
+
+
+	int i,j,k,l,totalships;
+	for (totalships = 0; totalships < getNShips(); totalships++) {
+		for (i = x - 1; i < x + ship->getW() + 1; i++) {
+			for (j = y - 1; j < y + ship->getH() + 1; j++) {
+				for (k = getShip(totalships)->getLocation().getIntX(); k < getShip(totalships)->getLocation().getIntX() + getShip(totalships)->getW(); k++) {
+					for (l = getShip(totalships)->getLocation().getY(); l < getShip(totalships)->getLocation().getY() + getShip(totalships)->getH(); l++) {		
+						if (i == k && j == l) {
+							adj = true;
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+		/*if (x == 1) {
 		for (i = 0; i < getNShips(); i++) {
 			if ((getShip(i)->getLocation().getIntX() == x && (getShip(i)->getLocation().getY() == y + ship->getH() || getShip(i)->getLocation().getY() == y - 1)) || (getShip(i)->getLocation().getIntX() == x + ship->getW() && (getShip(i)->getLocation().getY() == y + ship->getH() || getShip(i)->getLocation().getY() == y - 1 || getShip(i)->getLocation().getY() == y)) || (getShip(i)->getLocation().getIntX() == x && getShip(i)->getLocation().getY() == y)) {
 				adj = true;
@@ -152,7 +168,7 @@ bool Player::isAdjacent(Ship *ship) { //Refactor needed to handle other ships...
 				adj = false;
 			}
 		}
-	}
+	}*/
 	return adj;
 }
 
