@@ -103,7 +103,6 @@ Ship *Player::getShip(int n) {
 }
 
 bool Player::isAdjacent(Ship *ship) { //FIXED? Should work...
-    bool adj = false;
 	int x = ship->getLocation().getIntX();
 	int y = ship->getLocation().getY();
 
@@ -114,9 +113,8 @@ bool Player::isAdjacent(Ship *ship) { //FIXED? Should work...
 			for (j = y - 1; j < y + ship->getH() + 1; j++) {
 				for (k = getShip(totalships)->getLocation().getIntX(); k < getShip(totalships)->getLocation().getIntX() + getShip(totalships)->getW(); k++) {
 					for (l = getShip(totalships)->getLocation().getY(); l < getShip(totalships)->getLocation().getY() + getShip(totalships)->getH(); l++) {		
-						if (i == k && j == l) {
-							adj = true;
-							break;
+						if (i == k && j == l) {	
+							return true;
 						}
 					}
 				}
@@ -169,7 +167,7 @@ bool Player::isAdjacent(Ship *ship) { //FIXED? Should work...
 			}
 		}
 	}*/
-	return adj;
+	return false;
 }
 
 int Player::getNMoves() {
@@ -195,7 +193,7 @@ void Player::play(Player &enemy, Draw drawManager, int turns) {
 		cout << "Your Turn";
 		drawManager.DrawPlayer(); // Player + Player moves
 		cout << endl;
-		move.ask2Set();
+		move.ask2Set();	
 
 		system("cls");
 		drawManager.DrawScore(turns, getNShips(), enemy.getNShips());

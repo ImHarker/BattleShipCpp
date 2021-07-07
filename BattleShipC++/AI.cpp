@@ -16,10 +16,11 @@ void AI::putShip() {
 	do{
 	x = rand() % 10 + 1;
 	y = rand() % 10 + 1;
+	sub->getLocation().setX(x);
+	sub->getLocation().setY(y);
 	}while (isAdjacent(sub));
 
-		sub->getLocation().setX(x);
-		sub->getLocation().setY(y);
+
 		sub->getLocation().setC('O');
 		getBoard().setMatrixCell(sub->getLocation());
 		setShips(sub);
